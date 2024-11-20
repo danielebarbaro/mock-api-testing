@@ -1,0 +1,153 @@
+openapi: 3.0.0
+info:
+  title: Mock API Testing Demo
+  version: 1.0.0
+  description: Example API for demonstrating Swoole mock server and Pest testing
+
+servers:
+  - url: http://localhost:9501
+    description: Mock Server
+
+paths:
+  /translations/stations:
+    get:
+      summary: Get stations translations
+      operationId: getStationsTranslations
+      responses:
+        '200':
+          description: List of stations with translations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StationTranslation'
+                
+  /it/rally/stations/{id}:
+    get:
+      summary: Get rally station by ID
+      operationId: getRallyStationById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Rally station details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RallyStation'
+                
+  /it/rally/stations:
+    get:
+      summary: Get all rally stations
+      operationId: getRallyStations
+      responses:
+        '200':
+          description: List of rally stations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RallyStation'
+                
+  /it/rally/timeframes/{stationIds}:
+    get:
+      summary: Get timeframes for stations
+      operationId: getTimeframes
+      parameters:
+        - name: stationIds
+          in: path
+          required: true
+          description: Format example "1-2" for stations 1 and 2
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of timeframes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TimeFrame'
+
+components:
+  schemas:
+    StationTranslation:
+      type: object
+      properties:
+        id:
+          type: integer
+        translations:
+          type: object
+          properties:
+            it:
+              $ref: '#/components/schemas/Translation'
+            en:
+              $ref: '#/components/schemas/Translation'
+        country_translations:
+          type: object
+          properties:
+            it:
+              $ref: '#/components/schemas/Translation'
+            en:
+              $ref: '#/components/schemas/Translation'
+        country_codes:
+          type: array
+          items:
+            type: string
+            
+    Translation:
+      type: object
+      properties:
+        name:
+          type: string
+          
+    RallyStation:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        city:
+          $ref: '#/components/schemas/City'
+        enabled:
+          type: boolean
+        public:
+          type: boolean
+        one_way:
+          type: boolean
+        returns:
+          type: array
+          items:
+            type: integer
+    
+    City:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        country:
+          type: string
+        country_name:
+          type: string
+        country_translated:
+          type: string
+          
+    TimeFrame:
+      type: object
+      properties:
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time

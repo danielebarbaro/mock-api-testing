@@ -18,7 +18,12 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Danielebarbaro\\MockApiTesting\\": "src/"
+            "MockApiTesting\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
         }
     },
     "authors": [
@@ -29,8 +34,22 @@
     ],
     "minimum-stability": "stable",
     "config": {
+        "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true
         }
+    },
+    "scripts": {
+        "test": "pest",
+        "serve": "php tests/Mock/Server/swoole-test-server.php",
+        "docs": "php -S localhost:8080 -t api/",
+        "analyse": "phpstan analyse src tests",
+        "format": "php-cs-fixer fix",
+        "format:check": "php-cs-fixer fix --dry-run",
+        "docker:up": "docker-compose -f docker/docker-compose.yml up -d",
+        "docker:down": "docker-compose -f docker/docker-compose.yml down",
+        "docker:test": "docker-compose -f docker/docker-compose.yml exec app composer test",
+        "docker:shell": "docker-compose -f docker/docker-compose.yml exec app sh",
+        "redoc-build": "redocly build-docs api/openapi.yaml --output=api/redoc.html"
     }
 }
