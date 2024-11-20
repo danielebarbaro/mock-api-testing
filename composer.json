@@ -51,6 +51,8 @@
         ],
         "test": "pest --colors=always",
         "test:coverage": "pest --colors=always --parallel --coverage-html .coverage",
+        "cs": "php vendor/bin/php-cs-fixer fix",
+        "cs-check": "php vendor/bin/php-cs-fixer fix --dry-run",
         "serve": "XDEBUG_MODE=off php tests/Mock/Server/openswoole-test-server.php",
         "docs": "php -S localhost:8080 -t api/",
         "analyse": "phpstan analyse src tests",

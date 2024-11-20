@@ -9,7 +9,8 @@ readonly class TimeFrameDTO
     public function __construct(
         public DateTimeImmutable $startDate,
         public DateTimeImmutable $endDate
-    ) {}
+    ) {
+    }
 
     public static function fromArray(array $data): self
     {

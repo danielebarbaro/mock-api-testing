@@ -10,7 +10,7 @@ it('prevents modification of readonly properties', function () {
         city: new CityDTO(1, 'Milano', 'IT', 'Italy', 'Italia')
     );
 
-    expect(fn() => $station->name = 'Rome')
+    expect(fn () => $station->name = 'Rome')
         ->toThrow(Error::class, 'Cannot modify readonly property');
 });
 
@@ -35,10 +35,10 @@ it('maintains immutability through object graph', function () {
             'name' => 'Milano',
             'country' => 'IT',
             'country_name' => 'Italy',
-            'country_translated' => 'Italia'
-        ]
+            'country_translated' => 'Italia',
+        ],
     ]);
 
-    expect(fn() => $station->city->name = 'Rome')
+    expect(fn () => $station->city->name = 'Rome')
         ->toThrow(Error::class, 'Cannot modify readonly property');
 });

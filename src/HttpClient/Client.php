@@ -46,6 +46,7 @@ class Client implements ClientInterface
     {
         $data = $response->toArray();
         $isAssoc = array_keys($data) !== range(0, count($data) - 1);
+
         return $isAssoc ? (object) $data : $data;
     }
 }

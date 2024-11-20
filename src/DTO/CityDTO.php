@@ -10,7 +10,8 @@ readonly class CityDTO
         public string $country,
         public string $countryName,
         public string $countryTranslated
-    ) {}
+    ) {
+    }
 
     public static function fromArray(array $data): self
     {
@@ -23,4 +24,3 @@ readonly class CityDTO
         );
     }
 }
-

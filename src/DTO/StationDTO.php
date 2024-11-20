@@ -12,7 +12,8 @@ readonly class StationDTO
         public bool $public = true,
         public bool $oneWay = false,
         public array $returns = []
-    ) {}
+    ) {
+    }
 
     public static function fromArray(array $data): self
     {

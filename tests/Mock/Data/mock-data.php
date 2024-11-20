@@ -5,13 +5,13 @@ return [
         'id' => 1,
         'translations' => [
             'it' => ['name' => 'Milano'],
-            'en' => ['name' => 'Milan']
+            'en' => ['name' => 'Milan'],
         ],
         'country_translations' => [
             'it' => ['name' => 'Italia'],
-            'en' => ['name' => 'Italy']
+            'en' => ['name' => 'Italy'],
         ],
-        'country_codes' => ['IT', 'ITA']
+        'country_codes' => ['IT', 'ITA'],
     ]],
 
     'rally_stations' => [[
@@ -22,16 +22,16 @@ return [
             'name' => 'Milano',
             'country' => 'IT',
             'country_name' => 'Italy',
-            'country_translated' => 'Italia'
+            'country_translated' => 'Italia',
         ],
         'enabled' => true,
         'public' => true,
         'one_way' => true,
-        'returns' => [2, 3]
+        'returns' => [2, 3],
     ]],
 
     'timeframes' => [[
         'startDate' => '2024-01-01T00:00:00+00:00',
-        'endDate' => '2024-01-08T00:00:00+00:00'
-    ]]
+        'endDate' => '2024-01-08T00:00:00+00:00',
+    ]],
 ];

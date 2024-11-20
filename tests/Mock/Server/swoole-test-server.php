@@ -7,7 +7,7 @@ use Swoole\Http\Response;
 $host = '127.0.0.1';
 $port = 9501;
 
-$mockData = require __DIR__ . '/../Data/mock-data.php';
+$mockData = require __DIR__.'/../Data/mock-data.php';
 $server = new Server($host, $port);
 
 $server->on('request', function (Request $request, Response $response) use ($mockData) {
@@ -37,7 +37,7 @@ $server->on('request', function (Request $request, Response $response) use ($moc
             $response->status(404);
             $response->end(json_encode([
                 'error' => 'Not Found',
-                'message' => 'Endpoint not found'
+                'message' => 'Endpoint not found',
             ]));
             break;
     }
@@ -51,4 +51,3 @@ echo "  - GET /it/rally/stations/1\n";
 echo "  - GET /it/rally/timeframes/1-2\n\n";
 
 $server->start();
-

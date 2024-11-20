@@ -9,7 +9,7 @@ $host = '127.0.0.1';
 $port = 9501;
 
 $server = new Server($host, $port);
-$mockData = require __DIR__ . '/../Data/mock-data.php';
+$mockData = require __DIR__.'/../Data/mock-data.php';
 
 $server->set([
     'worker_num' => 2,
@@ -39,7 +39,7 @@ $server->on('request', function (Request $request, Response $response) use ($moc
 
     $server = $request->server;
     $logMessage = sprintf(
-        "[%s] %s %s %s",
+        '[%s] %s %s %s',
         date('Y-m-d H:i:s'),
         $server['remote_addr'],
         $server['request_method'],
@@ -54,6 +54,7 @@ $server->on('request', function (Request $request, Response $response) use ($moc
     if ($request->server['request_method'] === 'OPTIONS') {
         $response->status(204);
         $response->end();
+
         return;
     }
 
@@ -88,20 +89,20 @@ $server->on('request', function (Request $request, Response $response) use ($moc
                 $response->status(404);
                 $response->end(json_encode([
                     'error' => 'Not Found',
-                    'message' => 'Endpoint not found'
+                    'message' => 'Endpoint not found',
                 ]));
                 break;
         }
     } catch (Throwable $e) {
-        error_log("Error: " . $e->getMessage());
+        error_log('Error: '.$e->getMessage());
         $response->status(500);
         $response->end(json_encode([
             'error' => 'Internal Server Error',
-            'message' => $e->getMessage()
+            'message' => $e->getMessage(),
         ]));
     } finally {
         $duration = (microtime(true) - $startTime) * 1000;
-        error_log(sprintf("Response time: %.2fms", $duration));
+        error_log(sprintf('Response time: %.2fms', $duration));
     }
 });
 

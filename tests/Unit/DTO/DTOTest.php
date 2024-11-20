@@ -4,14 +4,14 @@ use MockApiTesting\DTO\CityDTO;
 use MockApiTesting\DTO\StationDTO;
 use MockApiTesting\DTO\TimeFrameDTO;
 
-describe('DTOs', function() {
-    it('creates CityDTO from array', function() {
+describe('DTOs', function () {
+    it('creates CityDTO from array', function () {
         $data = [
             'id' => 1,
             'name' => 'Milano',
             'country' => 'IT',
             'country_name' => 'Italy',
-            'country_translated' => 'Italia'
+            'country_translated' => 'Italia',
         ];
 
         $city = CityDTO::fromArray($data);
@@ -25,7 +25,7 @@ describe('DTOs', function() {
             ->and($city->countryTranslated)->toBe('Italia');
     });
 
-    it('creates StationDTO from array', function() {
+    it('creates StationDTO from array', function () {
         $data = [
             'id' => 1,
             'name' => 'Milano Station',
@@ -34,12 +34,12 @@ describe('DTOs', function() {
                 'name' => 'Milano',
                 'country' => 'IT',
                 'country_name' => 'Italy',
-                'country_translated' => 'Italia'
+                'country_translated' => 'Italia',
             ],
             'enabled' => true,
             'public' => true,
             'one_way' => true,
-            'returns' => [2, 3]
+            'returns' => [2, 3],
         ];
 
         $station = StationDTO::fromArray($data);
@@ -53,10 +53,10 @@ describe('DTOs', function() {
             ->and($station->returns)->toBe([2, 3]);
     });
 
-    it('creates TimeFrameDTO from array', function() {
+    it('creates TimeFrameDTO from array', function () {
         $data = [
             'startDate' => '2024-01-01T00:00:00+00:00',
-            'endDate' => '2024-01-08T00:00:00+00:00'
+            'endDate' => '2024-01-08T00:00:00+00:00',
         ];
 
         $timeframe = TimeFrameDTO::fromArray($data);
