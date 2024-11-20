@@ -1,6 +1,6 @@
 <?php
 
-namespace Library\RoadSurfer\Exception;
+namespace MockApiTesting\Exception;
 
 use Exception;
 
