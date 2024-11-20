@@ -22,7 +22,7 @@ jobs:
               uses: shivammathur/setup-php@v2
               with:
                 php-version: ${{ matrix.php-version }}
-                extensions: swoole, dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+                extensions: openswoole, dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
                 coverage: none
                 tools: composer:v2
     
@@ -36,9 +36,12 @@ jobs:
 
             - name: List Installed Dependencies
               run: composer show -D
-    
+              
+            - name: Verify OpenSwoole installation
+              run: php -m | grep openswoole
+              
             - name: Start Swoole server
-              run: php tests/Mock/Server/swoole-test-server.php &
+              run: php tests/Mock/Server/openswoole-test-server.php &
               continue-on-error: true
               timeout-minutes: 1
 
@@ -51,4 +54,4 @@ jobs:
      
             - name: Stop Swoole server
               run: |
-                pkill -f tests/Mock/Server/swoole-test-server.php
+                pkill -f tests/Mock/Server/openswoole-test-server.php

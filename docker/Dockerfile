@@ -18,8 +18,15 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # Install PHP extensions
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath
 
-# Install Swoole
-RUN pecl install swoole && docker-php-ext-enable swoole
+# Install OpenSwoole specifically
+RUN pecl install openswoole \
+    && docker-php-ext-enable openswoole
+
+# Verify OpenSwoole installation
+RUN php -m | grep openswoole
+
+# Verify OpenSwoole version
+RUN php --ri openswoole
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer

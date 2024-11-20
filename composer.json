@@ -4,16 +4,19 @@
     "type": "project",
     "require": {
         "php": "^8.3",
-        "ext-swoole": "*",
-        "symfony/http-client": "^6.0",
-        "swoole/ide-helper": "^5.1"
+        "ext-openswoole": "*",
+        "symfony/http-client": "^6.0"
     },
     "require-dev": {
-        "pestphp/pest": "^2.0",
-        "mockery/mockery": "^1.6",
-        "phpstan/phpstan": "^2.0",
         "friendsofphp/php-cs-fixer": "^3.64",
+        "mockery/mockery": "^1.6",
+        "openswoole/ide-helper": "~22.0.1",
+        "pestphp/pest": "^2.0",
+        "phpstan/phpstan": "^2.0",
         "symfony/var-dumper": "^7.1"
+    },
+    "suggest": {
+        "ext-openswoole": "Preferred extension for running the mock server"
     },
     "license": "MIT",
     "autoload": {
@@ -40,9 +43,15 @@
         }
     },
     "scripts": {
+        "check-extensions": [
+            "php -r \"if(!extension_loaded('openswoole')) die('Neither OpenSwoole nor Swoole extensions are available!\\n');\""
+        ],
+        "pre-server-start": [
+            "@check-extensions"
+        ],
         "test": "pest --colors=always",
         "test:coverage": "pest --colors=always --parallel --coverage-html .coverage",
-        "serve": "php tests/Mock/Server/swoole-test-server.php",
+        "serve": "XDEBUG_MODE=off php tests/Mock/Server/openswoole-test-server.php",
         "docs": "php -S localhost:8080 -t api/",
         "analyse": "phpstan analyse src tests",
         "format": "php-cs-fixer fix",
