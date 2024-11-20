@@ -2,7 +2,7 @@
 
 namespace MockApiTesting\DTO;
 
-class CityDTO
+readonly class CityDTO
 {
     public function __construct(
         public int $id,

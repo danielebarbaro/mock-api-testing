@@ -2,16 +2,16 @@
 
 namespace MockApiTesting\DTO;
 
-class StationDTO
+readonly class StationDTO
 {
     public function __construct(
-        public readonly int $id,
-        public readonly string $name,
-        public readonly CityDTO $city,
-        public readonly bool $enabled = true,
-        public readonly bool $public = true,
-        public readonly bool $oneWay = false,
-        public readonly array $returns = []
+        public int $id,
+        public string $name,
+        public CityDTO $city,
+        public bool $enabled = true,
+        public bool $public = true,
+        public bool $oneWay = false,
+        public array $returns = []
     ) {}
 
     public static function fromArray(array $data): self

@@ -4,11 +4,11 @@ namespace MockApiTesting\DTO;
 
 use DateTimeImmutable;
 
-class TimeFrameDTO
+readonly class TimeFrameDTO
 {
     public function __construct(
-        public readonly DateTimeImmutable $startDate,
-        public readonly DateTimeImmutable $endDate
+        public DateTimeImmutable $startDate,
+        public DateTimeImmutable $endDate
     ) {}
 
     public static function fromArray(array $data): self
