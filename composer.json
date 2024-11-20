@@ -40,7 +40,8 @@
         }
     },
     "scripts": {
-        "test": "pest",
+        "test": "pest --colors=always",
+        "test:coverage": "pest --colors=always --parallel --coverage-html .coverage",
         "serve": "php tests/Mock/Server/swoole-test-server.php",
         "docs": "php -S localhost:8080 -t api/",
         "analyse": "phpstan analyse src tests",

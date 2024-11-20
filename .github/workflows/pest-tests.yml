@@ -1,0 +1,54 @@
+name: Run Pest tests
+
+on: ['push', 'pull_request']
+
+jobs:
+    pest-tests:
+        runs-on: ubuntu-latest
+        timeout-minutes: 5
+        strategy:
+            fail-fast: true
+            matrix:
+                php-version: ['8.3']
+        
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Validate composer.json and composer.lock
+              run: composer validate --strict
+
+            - name: Set up PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                php-version: ${{ matrix.php-version }}
+                extensions: swoole, dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+                coverage: none
+                tools: composer:v2
+    
+            - name: Setup problem matchers
+              run: |
+                echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+                echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+            - name: Install Composer dependencies
+              run: composer install --prefer-dist --no-progress --no-interaction --optimize-autoloader
+
+            - name: List Installed Dependencies
+              run: composer show -D
+    
+            - name: Start Swoole server
+              run: php tests/Mock/Server/swoole-test-server.php &
+              continue-on-error: true
+              timeout-minutes: 1
+
+            - name: Wait for Swoole to be ready
+              run: |
+                timeout 10s bash -c 'until echo > /dev/tcp/127.0.0.1/9501; do sleep 1; done'
+
+            - name: Run Pest tests
+              run: vendor/bin/pest --ci --colors=always
+     
+            - name: Stop Swoole server
+              run: |
+                pkill -f tests/Mock/Server/swoole-test-server.php
