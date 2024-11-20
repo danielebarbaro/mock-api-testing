@@ -15,7 +15,7 @@
     </testsuites>
     <coverage>
         <report>
-            <html outputDirectory="./coverage"/>
+            <html outputDirectory=".coverage/"/>
             <text outputFile=".coverage/coverage.txt"/>
             <clover outputFile=".coverage/logs/clover.xml"/>
         </report>
