@@ -1,0 +1,36 @@
+{
+    "name": "danielebarbaro/mock-api-testing",
+    "description": "Simple API mock testing with Swoole",
+    "type": "project",
+    "require": {
+        "php": "^8.3",
+        "ext-swoole": "*",
+        "symfony/http-client": "^6.0",
+        "swoole/ide-helper": "^5.1"
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.0",
+        "mockery/mockery": "^1.6",
+        "phpstan/phpstan": "^2.0",
+        "friendsofphp/php-cs-fixer": "^3.64",
+        "symfony/var-dumper": "^7.1"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Danielebarbaro\\MockApiTesting\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Daniele Barbaro",
+            "email": "barbaro.daniele@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
