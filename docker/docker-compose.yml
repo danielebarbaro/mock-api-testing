@@ -1,0 +1,18 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ../:/var/www
+    ports:
+      - "9501:9501"
+    networks:
+      - mock-api-testing
+    tty: true
+    restart: unless-stopped
+    command: sh -c "composer install && composer serve"
+
+networks:
+  mock-api-testing:
+    driver: bridge
