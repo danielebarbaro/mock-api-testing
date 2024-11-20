@@ -1,11 +1,11 @@
 # Mock API Testing
 
-A PHP project demonstrating how to create and test mock APIs using Swoole and Pest.
+A PHP project demonstrating how to create and test mock APIs using OpenSwoole and Pest.
 
 ## 🎯 Features
 
 - Simple HTTP client for API testing
-- Swoole-based mock server
+- OpenSwoole-based mock server
 - Pest testing suite
 - OpenAPI specification support
 - Docker support
@@ -17,7 +17,7 @@ A PHP project demonstrating how to create and test mock APIs using Swoole and Pe
 ### Prerequisites
 
 - PHP 8.3
-- Swoole extension
+- OpenSwoole extension
 - Composer
 - Docker (optional)
 
@@ -54,21 +54,43 @@ composer docker:shell
 composer docker:down
 ```
 
-### Installing Swoole
+### Installing OpenSwoole
+
+> **Note**: OpenSwoole and Swoole cannot be installed simultaneously. If you have Swoole installed, you need to remove it first.
+
+#### Remove Swoole (if installed)
+```bash
+# MacOS
+brew uninstall swoole
+pecl uninstall swoole
+
+# Ubuntu/Debian
+sudo apt-get remove php-swoole
+
+# Verify removal
+php -m | grep swoole
+```
+
+#### Install OpenSwoole
 
 #### MacOS
 ```bash
-brew install swoole
+brew install openswoole/tap/openswoole
 ```
 
 #### Ubuntu/Debian
 ```bash
-sudo apt-get install php-swoole
+sudo apt-get install php-openswoole
 ```
 
 #### Using PECL
 ```bash
-sudo pecl install swoole
+sudo pecl install openswoole
+```
+
+#### Verify Installation
+```bash
+php --ri openswoole
 ```
 
 ## 📖 Project Structure
@@ -98,7 +120,7 @@ mock-api-testing/
 │   │       └── StationDTOTest.php
 │   ├── Mock/
 │   │   ├── Server/
-│   │   │   └── swoole-test-server.php
+│   │   │   └── openswoole-test-server.php
 │   │   └── Data/
 │   │       └── mock-data.php
 │   ├── Pest.php
@@ -151,6 +173,25 @@ The project includes a complete OpenAPI specification describing all available e
 The mock server will be available at:
 - http://localhost:9501
 
+## 🚀 OpenSwoole Features
+
+OpenSwoole brings several advantages to this project:
+
+- Event-driven, non-blocking I/O
+- Built-in multi-threading
+- Coroutines support
+- Better memory management
+- Improved performance over traditional PHP servers
+- Enhanced configuration options
+- Better compatibility with modern PHP features
+
+### Key Differences from Swoole
+- Community-driven development
+- More frequent updates and better community support
+- Enhanced configuration options
+- Improved error handling
+- Better PHP 8.x compatibility
+
 ## 🧪 Testing
 
 This project uses Pest for testing. Tests are located in the `tests` directory and organized into:
@@ -201,3 +242,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 👤 Author
 
 Daniele Barbaro
+```

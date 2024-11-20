@@ -81,8 +81,6 @@ $server->on('request', function (Request $request, Response $response) use ($moc
                 $response->end(json_encode([
                     'status' => 'ok',
                     'version' => OPENSWOOLE_VERSION,
-                    'timestamp' => time(),
-                    'uptime' => time() - $server->stats()['start_time']
                 ]));
                 break;
 
