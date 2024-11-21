@@ -1,6 +1,12 @@
-# Mock API Testing
+# Mock API Testing for the PUGTO meetup
 
 A PHP project demonstrating how to create and test mock APIs using OpenSwoole and Pest.
+
+The event link is: [MeetUp](https://www.meetup.com/it-IT/pug-torino/events/304246466)  
+
+Slides: [Download](slides/Swoole_and_Pest_a_modern_testing_approach-PUGTO_Daniele_Barbaro.pdf)   
+
+I recommend checking out the repo: [Suggest a trip to me](https://github.com/danielebarbaro/suggest-me-a-trip)  
 
 ## 🎯 Features
 
